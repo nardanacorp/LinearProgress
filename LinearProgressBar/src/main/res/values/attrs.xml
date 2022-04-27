@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressBars">
+        <attr name="radiusall" format="integer"/>
+        <attr name="radiusTopLeft" format="integer"/>
+        <attr name="radiusTopRight" format="integer"/>
+        <attr name="radiusBottomLeft" format="integer"/>
+        <attr name="radiusBottomRight" format="integer"/>
+        <attr name="Progressbackground" format="color"/>
+        <attr name="ProgressTo" format="color"/>
+        <attr name="colortitle" format="color"/>
+        <attr name="ToProgress" format="integer"/>
+        <attr name="titleprogress" format="string"/>
+        <attr name="titlesize" format="dimension"/>
+    </declare-styleable>
+</resources>
