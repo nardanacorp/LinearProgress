@@ -53,6 +53,37 @@ Added below custom item to top tag
 | app:titleprogress  | String |
 | app:titlesize  | Dimension ( dp,sp,.... )
 
+# Coding Layout
+
+After Casting to custom variable can access below function 
+
+```
+In Activity Main Body
+
+val CustomVariableName = findViewById<LinearProgressBar>(R.id.LinearProgressBar)
+
+In Custom View Or Fragment Or Inflate View
+
+val CustomVariableName = viewname.findViewById<LinearProgressBar>(R.id.LinearProgressBar)
+
+CustomVariableName.setTitleProgress("Downloading Media ")
+CustomVariableName.setToProgress(20)
+
+```
+
+# Set TypeFace ( Font )
+
+For setting custom typeface , first create typeface and second set to function.
+
+Create Directory Name ( Font ) under 'res' directory and put custom font into /res/font/customfontname.ttf
+
+```
+
+val typeface = ResourcesCompat.getFont(this.context,R.font.customfontname)
+CustomVariableName.setTypeFace(typeface)
+
+```
+
 # Functions
 
 # Gets
