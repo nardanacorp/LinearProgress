@@ -41,23 +41,23 @@ class LinearProgressBar : View {
 
     fun initial(context: Context?, attrs: AttributeSet?)
     {
-        val ta = context!!.theme.obtainStyledAttributes(attrs,R.styleable.ProgressBars,0,0)
+        val ta = context!!.theme.obtainStyledAttributes(attrs,R.styleable.LinearProgressBar,0,0)
         try
         {
-            this.radiusall = ta.getInteger(R.styleable.ProgressBars_radiusall,0)
-            this.cornerradiusTopLeft = ta.getInteger(R.styleable.ProgressBars_radiusTopLeft,0)
-            this.cornerradiusTopRight = ta.getInteger(R.styleable.ProgressBars_radiusTopRight,0)
-            this.cornerradiusBottomLeft = ta.getInteger(R.styleable.ProgressBars_radiusBottomLeft,0)
-            this.cornerradiusBottomRight = ta.getInteger(R.styleable.ProgressBars_radiusBottomRight,0)
-            this.titlesize = ta.getDimension(R.styleable.ProgressBars_titlesize,18f)
-            this.backgroundcolor = ta.getColor(R.styleable.ProgressBars_Progressbackground,
+            this.radiusall = ta.getInteger(R.styleable.LinearProgressBar_radiusall,0)
+            this.cornerradiusTopLeft = ta.getInteger(R.styleable.LinearProgressBar_radiusTopLeft,0)
+            this.cornerradiusTopRight = ta.getInteger(R.styleable.LinearProgressBar_radiusTopRight,0)
+            this.cornerradiusBottomLeft = ta.getInteger(R.styleable.LinearProgressBar_radiusBottomLeft,0)
+            this.cornerradiusBottomRight = ta.getInteger(R.styleable.LinearProgressBar_radiusBottomRight,0)
+            this.titlesize = ta.getDimension(R.styleable.LinearProgressBar_titlesize,18f)
+            this.backgroundcolor = ta.getColor(R.styleable.LinearProgressBar_Progressbackground,
                 ContextCompat.getColor(context,R.color.teal_200))
-            this.backgroundto = ta.getColor(R.styleable.ProgressBars_ProgressToBackground,
+            this.backgroundto = ta.getColor(R.styleable.LinearProgressBar_ProgressToBackground,
                 ContextCompat.getColor(context,R.color.teal_200))
-            this.colortitle = ta.getColor(R.styleable.ProgressBars_colortitle,
+            this.colortitle = ta.getColor(R.styleable.LinearProgressBar_colortitle,
                 ContextCompat.getColor(context,R.color.teal_200))
-            this.toprogress = ta.getInteger(R.styleable.ProgressBars_ToProgress,0)
-            this.titleprogress = ta.getString(R.styleable.ProgressBars_titleprogress)
+            this.toprogress = ta.getInteger(R.styleable.LinearProgressBar_ToProgress,0)
+            this.titleprogress = ta.getString(R.styleable.LinearProgressBar_titleprogress)
         } finally {
             ta.recycle()
         }
