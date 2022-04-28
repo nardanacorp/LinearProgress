@@ -155,7 +155,7 @@ class LinearProgressBar : View {
         return this.titleprogress.toString()
     }
 
-    fun getBackgroundColor(): Int
+    fun getBackColor(): Int
     {
         return this.backgroundcolor
     }
@@ -230,7 +230,7 @@ class LinearProgressBar : View {
         refresh()
     }
 
-    fun setBackgroundColor(value: Int)
+    fun setBackColor(value: Int)
     {
         this.backgroundcolor = value
         refresh()
