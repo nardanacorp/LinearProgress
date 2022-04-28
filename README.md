@@ -42,6 +42,8 @@ dependencies {
 | getTypeFace | Get Type Face of Title Text for added font |
 | getTitleProgress | Get Title of Progress |
 | getBackgroundColor | Get Color of Background ( first layout ) |
+| getLayoutWidth | Get Width of Layout |
+| getLayoutHeight | Get Height of Layout |
 
 # Sets
 
