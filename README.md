@@ -23,6 +23,29 @@ dependencies {
 	}
 ```
 
+# Usage
+
+# View Layout 
+
+add below code on custom ( every view layout nameview.xml ) :
+
+```
+
+```
+
+| Attributes | Value |
+| ---------- | ----- |
+| radiusall  | Integer |
+| radiusTopLeft  | Integer |
+| radiusTopRight  | Integer |
+| radiusBottomLeft  | Integer |
+| radiusBottomRight  | Integer |
+| Progressbackground  | Color |
+| ProgressToBackground  | Color |
+| colortitle  | Color |
+| ToProgress  | Integer |
+| titleprogress  | String |
+| titlesize  | Dimension ( dp,sp,.... )
 
 # Functions
 
