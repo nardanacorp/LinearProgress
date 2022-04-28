@@ -100,157 +100,157 @@ class LinearProgressBar : View {
         canvas!!.drawText(this.titleprogress.toString(),positionx,((this.layoutheight / 2 + 10)).toFloat(),textpaint)
     }
 
-    fun get(): Int
+    fun getColorTitle(): Int
     {
         return this.colortitle
     }
 
-    fun getradiusAll(): Int
+    fun getRadiusAll(): Int
     {
         return this.radiusall
     }
 
-    fun gettitlesize(): Float
+    fun getTitleSize(): Float
     {
         return this.titlesize
     }
 
-    fun gettoprogress(): Int
+    fun getToProgress(): Int
     {
         return this.toprogress
     }
 
-    fun getbackgroundto(): Int
+    fun getBackgroundTo(): Int
     {
         return this.backgroundto
     }
 
-    fun getradiusTopLeft(): Int
+    fun getRadiusTopLeft(): Int
     {
         return this.radiusTopLeft
     }
 
-    fun gettypeface(): Typeface?
-    {
-        return this.typeface!!
-    }
-
-    fun getradiusTopRight(): Int
+    fun getRadiusTopRight(): Int
     {
         return this.radiusTopRight
     }
 
-    fun getradiusBottomRight(): Int
+    fun getRadiusBottomRight(): Int
     {
         return this.radiusBottomRight
     }
 
-    fun getradiusBottomLeft(): Int
+    fun getRadiusBottomLeft(): Int
     {
         return this.radiusBottomLeft
     }
 
-    fun gettitleprogress(): String
+    fun getTypeFace(): Typeface?
+    {
+        return this.typeface!!
+    }
+
+    fun getTitleProgress(): String
     {
         return this.titleprogress.toString()
     }
 
-    fun getbackgroundcolor(): Int
+    fun getBackgroundColor(): Int
     {
         return this.backgroundcolor
     }
 
-    fun getlayoutwidth(): Int
+    fun getLayoutWidth(): Int
     {
         return this.layoutwidth
     }
 
-    fun getlayoutheight(): Int
+    fun getLayoutHeight(): Int
     {
         return this.layoutheight
     }
 
-    fun setradiusAll(value: Int)
-    {
-        this.radiusall = value
-        refresh()
-    }
-
-    fun settitleprogress(value: String)
-    {
-        this.titleprogress = value
-        refresh()
-    }
-
-    fun setcolortitle(value: Int)
+    fun setColorTitle(value: Int)
     {
         this.colortitle = value
         refresh()
     }
 
-    fun settypeface(value: Typeface)
+    fun setRadiusAll(value: Int)
+    {
+        this.radiusall = value
+        refresh()
+    }
+
+    fun setTitleProgress(value: String)
+    {
+        this.titleprogress = value
+        refresh()
+    }
+
+    fun setTypeFace(value: Typeface)
     {
         this.typeface = value
         refresh()
     }
 
-    fun setradiusTopLeft(value: Int)
+    fun setRadiusTopLeft(value: Int)
     {
         this.radiusTopLeft = value
         refresh()
     }
 
-    fun setradiusTopRight(value: Int)
+    fun setRadiusTopRight(value: Int)
     {
         this.radiusTopRight = value
         refresh()
     }
 
-    fun setradiusBottomRight(value: Int)
+    fun setRadiusBottomRight(value: Int)
     {
         this.radiusBottomRight = value
         refresh()
     }
 
-    fun setradiusBottomLeft(value: Int)
+    fun setRadiusBottomLeft(value: Int)
     {
         this.radiusBottomLeft = value
         refresh()
     }
 
-    fun settoprogress(value: Int)
+    fun setToProgress(value: Int)
     {
         this.toprogress = value
         refresh()
     }
 
-    fun settitlesize(value: Float)
+    fun setTitleSize(value: Float)
     {
         this.titlesize = value
         refresh()
     }
 
-    fun setbackgroundcolor(value: Int)
+    fun setBackgroundColor(value: Int)
     {
         this.backgroundcolor = value
         refresh()
     }
 
-    fun setlayoutwidth(value: Int)
+    fun setBackgroundTo(value: Int)
+    {
+        this.backgroundto = value
+        refresh()
+    }
+
+    fun setLayoutWidth(value: Int)
     {
         this.layoutwidth = value
         refresh()
     }
 
-    fun setlayoutheight(value: Int)
+    fun setLayoutHeight(value: Int)
     {
         this.layoutheight = value
-        refresh()
-    }
-
-    fun setbackgrounddto(value: Int)
-    {
-        this.backgroundto = value
         refresh()
     }
 
