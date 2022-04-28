@@ -7,7 +7,7 @@
         <attr name="radiusBottomLeft" format="integer"/>
         <attr name="radiusBottomRight" format="integer"/>
         <attr name="Progressbackground" format="color"/>
-        <attr name="ProgressTo" format="color"/>
+        <attr name="ProgressToBackground" format="color"/>
         <attr name="colortitle" format="color"/>
         <attr name="ToProgress" format="integer"/>
         <attr name="titleprogress" format="string"/>

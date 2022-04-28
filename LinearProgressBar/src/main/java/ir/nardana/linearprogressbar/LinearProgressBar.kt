@@ -52,7 +52,7 @@ class LinearProgressBar : View {
             this.titlesize = ta.getDimension(R.styleable.ProgressBars_titlesize,18f)
             this.backgroundcolor = ta.getColor(R.styleable.ProgressBars_Progressbackground,
                 ContextCompat.getColor(context,R.color.teal_200))
-            this.backgroundto = ta.getColor(R.styleable.ProgressBars_ProgressTo,
+            this.backgroundto = ta.getColor(R.styleable.ProgressBars_ProgressToBackground,
                 ContextCompat.getColor(context,R.color.teal_200))
             this.colortitle = ta.getColor(R.styleable.ProgressBars_colortitle,
                 ContextCompat.getColor(context,R.color.teal_200))
