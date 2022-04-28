@@ -12,10 +12,10 @@ class LinearProgressBar : View {
     var colortitle: Int = -1
     var backgroundto: Int = -1
     var radiusall: Int = -1
-    var radiusTopLeft: Int = -1
-    var radiusTopRight: Int = -1
-    var radiusBottomLeft: Int = -1
-    var radiusBottomRight: Int = -1
+    var cornerradiusTopLeft: Int = -1
+    var cornerradiusTopRight: Int = -1
+    var cornerradiusBottomLeft: Int = -1
+    var cornerradiusBottomRight: Int = -1
     var layoutwidth: Int = -1
     var layoutheight: Int = -1
     var toprogress: Int = -1
@@ -45,10 +45,10 @@ class LinearProgressBar : View {
         try
         {
             this.radiusall = ta.getInteger(R.styleable.ProgressBars_radiusall,0)
-            this.radiusTopLeft = ta.getInteger(R.styleable.ProgressBars_radiusTopLeft,0)
-            this.radiusTopRight = ta.getInteger(R.styleable.ProgressBars_radiusTopRight,0)
-            this.radiusBottomLeft = ta.getInteger(R.styleable.ProgressBars_radiusBottomLeft,0)
-            this.radiusBottomRight = ta.getInteger(R.styleable.ProgressBars_radiusBottomRight,0)
+            this.cornerradiusTopLeft = ta.getInteger(R.styleable.ProgressBars_radiusTopLeft,0)
+            this.cornerradiusTopRight = ta.getInteger(R.styleable.ProgressBars_radiusTopRight,0)
+            this.cornerradiusBottomLeft = ta.getInteger(R.styleable.ProgressBars_radiusBottomLeft,0)
+            this.cornerradiusBottomRight = ta.getInteger(R.styleable.ProgressBars_radiusBottomRight,0)
             this.titlesize = ta.getDimension(R.styleable.ProgressBars_titlesize,18f)
             this.backgroundcolor = ta.getColor(R.styleable.ProgressBars_Progressbackground,
                 ContextCompat.getColor(context,R.color.teal_200))
@@ -78,7 +78,7 @@ class LinearProgressBar : View {
         }
         else
         {
-            corners = floatArrayOf(this.radiusTopLeft.toFloat(),this.radiusTopLeft.toFloat(),this.radiusTopRight.toFloat(),this.radiusTopRight.toFloat(),this.radiusBottomRight.toFloat(),this.radiusBottomRight.toFloat(),this.radiusBottomLeft.toFloat(),this.radiusBottomLeft.toFloat())
+            corners = floatArrayOf(this.cornerradiusTopLeft.toFloat(),this.cornerradiusTopLeft.toFloat(),this.cornerradiusTopRight.toFloat(),this.cornerradiusTopRight.toFloat(),this.cornerradiusBottomRight.toFloat(),this.cornerradiusBottomRight.toFloat(),this.cornerradiusBottomLeft.toFloat(),this.cornerradiusBottomLeft.toFloat())
         }
         var pathbacground = Path()
         pathbacground.addRoundRect(rectf,corners, Path.Direction.CW)
@@ -127,22 +127,22 @@ class LinearProgressBar : View {
 
     fun getRadiusTopLeft(): Int
     {
-        return this.radiusTopLeft
+        return this.cornerradiusTopLeft
     }
 
     fun getRadiusTopRight(): Int
     {
-        return this.radiusTopRight
+        return this.cornerradiusTopRight
     }
 
     fun getRadiusBottomRight(): Int
     {
-        return this.radiusBottomRight
+        return this.cornerradiusBottomRight
     }
 
     fun getRadiusBottomLeft(): Int
     {
-        return this.radiusBottomLeft
+        return this.cornerradiusBottomLeft
     }
 
     fun getTypeFace(): Typeface?
@@ -196,25 +196,25 @@ class LinearProgressBar : View {
 
     fun setRadiusTopLeft(value: Int)
     {
-        this.radiusTopLeft = value
+        this.cornerradiusTopLeft = value
         refresh()
     }
 
     fun setRadiusTopRight(value: Int)
     {
-        this.radiusTopRight = value
+        this.cornerradiusTopRight = value
         refresh()
     }
 
     fun setRadiusBottomRight(value: Int)
     {
-        this.radiusBottomRight = value
+        this.cornerradiusBottomRight = value
         refresh()
     }
 
     fun setRadiusBottomLeft(value: Int)
     {
-        this.radiusBottomLeft = value
+        this.cornerradiusBottomLeft = value
         refresh()
     }
 
