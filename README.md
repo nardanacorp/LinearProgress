@@ -59,6 +59,8 @@ dependencies {
 | setTypeFace | Set Type Face of Title Text for added font |
 | setTitleProgress | Set Title of Progress |
 | setBackgroundColor | Set Color of Background ( first layout ) |
+| setLayoutWidth | Set Width of Layout |
+| setLayoutHeight | Set Height of Layout |
 
 # Contact Us
 
