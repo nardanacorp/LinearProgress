@@ -23,6 +23,35 @@ dependencies {
 	}
 ```
 
+# Usage
+
+# View Layout 
+
+add below code on custom ( every view layout nameview.xml ) :
+
+```
+        <ir.nardana.linearprogressbar.LinearProgressBar
+            android:id="@+id/LinearProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ProgressToBackground="@color/AppColor" />
+```
+
+Added below custom item to top tag 
+
+| Attributes | Value |
+| ---------- | ----- |
+| app:radiusall  | Integer |
+| app:radiusTopLeft  | Integer |
+| app:radiusTopRight  | Integer |
+| app:radiusBottomLeft  | Integer |
+| app:radiusBottomRight  | Integer |
+| app:Progressbackground  | Color |
+| app:ProgressToBackground  | Color |
+| app:colortitle  | Color |
+| app:ToProgress  | Integer |
+| app:titleprogress  | String |
+| app:titlesize  | Dimension ( dp,sp,.... )
 
 # Functions
 
