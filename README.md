@@ -19,7 +19,7 @@ and added below code on build.gradle.app ( build.gradle contains implemention li
 
 ```python
 dependencies {
-		implementation 'com.github.nardanacorp:LinearProgress:1.0.0'
+		implementation 'com.github.nardanacorp:LinearProgress:1.0.4'
 	}
 ```
 
