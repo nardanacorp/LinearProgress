@@ -57,7 +57,7 @@ class LinearProgressBar : View {
             this.colortitle = ta.getColor(R.styleable.LinearProgressBar_colortitle,
                 ContextCompat.getColor(context,R.color.teal_200))
             this.toprogress = ta.getInteger(R.styleable.LinearProgressBar_ToProgress,0)
-            this.titleprogress = ta.getString(R.styleable.LinearProgressBar_titleprogress)
+            this.titleprogress = if(ta.getString(R.styleable.LinearProgressBar_titleprogress) == null) "" else ta.getString(R.styleable.LinearProgressBar_titleprogress)
         } finally {
             ta.recycle()
         }
@@ -85,7 +85,12 @@ class LinearProgressBar : View {
         canvas!!.drawPath(pathbacground,this.backgroundPaint)
         this.toPaint.style = Paint.Style.FILL
         this.toPaint.color = this.backgroundto
-        val rectfto = RectF(0f,0f,this.toprogress.toFloat(),this.layoutheight.toFloat())
+        var widthtoprogress = this.toprogress.toFloat()
+        if(widthtoprogress > layoutwidth)
+        {
+            widthtoprogress = layoutwidth.toFloat()
+        }
+        val rectfto = RectF(0f,0f,widthtoprogress,this.layoutheight.toFloat())
         var topath = Path()
         topath.addRoundRect(rectfto,corners, Path.Direction.CW)
         canvas!!.drawPath(topath,this.toPaint)
