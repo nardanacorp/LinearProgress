@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="LinearProgressBar">
-        <attr name="radiusall" format="integer"/>
-        <attr name="radiusTopLeft" format="integer"/>
-        <attr name="radiusTopRight" format="integer"/>
-        <attr name="radiusBottomLeft" format="integer"/>
-        <attr name="radiusBottomRight" format="integer"/>
-        <attr name="Progressbackground" format="color"/>
+        <attr name="RadiusAll" format="integer"/>
+        <attr name="RadiusTopLeft" format="integer"/>
+        <attr name="RadiusTopRight" format="integer"/>
+        <attr name="RadiusBottomLeft" format="integer"/>
+        <attr name="RadiusBottomRight" format="integer"/>
+        <attr name="ProgressBackground" format="color"/>
         <attr name="ProgressToBackground" format="color"/>
-        <attr name="colortitle" format="color"/>
-        <attr name="ToProgress" format="integer"/>
-        <attr name="titleprogress" format="string"/>
-        <attr name="titlesize" format="dimension"/>
+        <attr name="ColorTitle" format="color"/>
+        <attr name="ToProgressInt" format="integer"/>
+        <attr name="ToProgressPercent" format="float"/>
+        <attr name="TitleProgress" format="string"/>
+        <attr name="TitleSize" format="dimension"/>
+        <attr name="BoxShadowSize" format="integer"/>
+        <attr name="BoxShadowSizeX" format="integer"/>
+        <attr name="BoxShadowSizeY" format="integer"/>
+        <attr name="BoxShadowColor" format="color"/>
     </declare-styleable>
 </resources>

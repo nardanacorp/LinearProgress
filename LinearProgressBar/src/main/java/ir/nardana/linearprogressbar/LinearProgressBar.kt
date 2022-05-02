@@ -2,9 +2,14 @@ package ir.nardana.linearprogressbar
 
 import android.content.Context
 import android.graphics.*
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import java.util.logging.Handler
 
 class LinearProgressBar : View {
     var titlesize: Float = 18f
@@ -18,12 +23,18 @@ class LinearProgressBar : View {
     var cornerradiusBottomRight: Int = -1
     var layoutwidth: Int = -1
     var layoutheight: Int = -1
-    var toprogress: Int = -1
+    var toprogressint: Int = -1
+    var toprogresspercent: Float = -1f
+    var boxshadowsize: Int = -1
+    var boxshadowsizex: Int = 0
+    var boxshadowsizey: Int = 0
+    var boxshadowcolor: Int = -1
     var titleprogress: String? = ""
     var typeface: Typeface? = null
     var backgroundPaint = Paint()
     var toPaint = Paint()
     var textpaint = Paint()
+    var Status_To_Percent: Boolean = false
 
     constructor(context: Context?) : super(context)
 
@@ -44,23 +55,30 @@ class LinearProgressBar : View {
         val ta = context!!.theme.obtainStyledAttributes(attrs,R.styleable.LinearProgressBar,0,0)
         try
         {
-            this.radiusall = ta.getInteger(R.styleable.LinearProgressBar_radiusall,0)
-            this.cornerradiusTopLeft = ta.getInteger(R.styleable.LinearProgressBar_radiusTopLeft,0)
-            this.cornerradiusTopRight = ta.getInteger(R.styleable.LinearProgressBar_radiusTopRight,0)
-            this.cornerradiusBottomLeft = ta.getInteger(R.styleable.LinearProgressBar_radiusBottomLeft,0)
-            this.cornerradiusBottomRight = ta.getInteger(R.styleable.LinearProgressBar_radiusBottomRight,0)
-            this.titlesize = ta.getDimension(R.styleable.LinearProgressBar_titlesize,18f)
-            this.backgroundcolor = ta.getColor(R.styleable.LinearProgressBar_Progressbackground,
+            this.radiusall = ta.getInteger(R.styleable.LinearProgressBar_RadiusAll,0)
+            this.cornerradiusTopLeft = ta.getInteger(R.styleable.LinearProgressBar_RadiusTopLeft,0)
+            this.cornerradiusTopRight = ta.getInteger(R.styleable.LinearProgressBar_RadiusTopRight,0)
+            this.cornerradiusBottomLeft = ta.getInteger(R.styleable.LinearProgressBar_RadiusBottomLeft,0)
+            this.cornerradiusBottomRight = ta.getInteger(R.styleable.LinearProgressBar_RadiusBottomRight,0)
+            this.boxshadowsize = ta.getInteger(R.styleable.LinearProgressBar_BoxShadowSize,-1)
+            this.boxshadowsizex = ta.getInteger(R.styleable.LinearProgressBar_BoxShadowSizeX,0)
+            this.boxshadowsizey = ta.getInteger(R.styleable.LinearProgressBar_BoxShadowSizeY,0)
+            this.titlesize = ta.getDimension(R.styleable.LinearProgressBar_TitleSize,(18 * resources.displayMetrics.density))
+            this.backgroundcolor = ta.getColor(R.styleable.LinearProgressBar_ProgressBackground,
+                ContextCompat.getColor(context,R.color.teal_200))
+            this.boxshadowcolor = ta.getColor(R.styleable.LinearProgressBar_BoxShadowColor,
                 ContextCompat.getColor(context,R.color.teal_200))
             this.backgroundto = ta.getColor(R.styleable.LinearProgressBar_ProgressToBackground,
                 ContextCompat.getColor(context,R.color.teal_200))
-            this.colortitle = ta.getColor(R.styleable.LinearProgressBar_colortitle,
-                ContextCompat.getColor(context,R.color.teal_200))
-            this.toprogress = ta.getInteger(R.styleable.LinearProgressBar_ToProgress,0)
-            this.titleprogress = if(ta.getString(R.styleable.LinearProgressBar_titleprogress) == null) "" else ta.getString(R.styleable.LinearProgressBar_titleprogress)
+            this.colortitle = ta.getColor(R.styleable.LinearProgressBar_ColorTitle,
+                ContextCompat.getColor(context,R.color.white))
+            this.toprogressint = ta.getInteger(R.styleable.LinearProgressBar_ToProgressInt,-1)
+            this.toprogresspercent = ta.getFloat(R.styleable.LinearProgressBar_ToProgressPercent,-1f)
+            this.titleprogress = if(ta.getString(R.styleable.LinearProgressBar_TitleProgress) == null) "" else ta.getString(R.styleable.LinearProgressBar_TitleProgress)
         } finally {
             ta.recycle()
         }
+        this.Status_To_Percent = this.toprogresspercent > -1f
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -69,7 +87,10 @@ class LinearProgressBar : View {
         this.layoutheight = this.measuredHeight
         this.backgroundPaint.style = Paint.Style.FILL
         this.backgroundPaint.color = this.backgroundcolor
-        this.backgroundPaint.setShadowLayer(20f,10f,10f,this.backgroundcolor)
+        if(this.boxshadowsize > -1)
+        {
+            this.backgroundPaint.setShadowLayer((this.boxshadowsize * resources.displayMetrics.density),this.boxshadowsizex.toFloat(),this.boxshadowsizey.toFloat(),this.boxshadowcolor)
+        }
         val rectf = RectF(0f,0f,this.layoutwidth.toFloat(),this.layoutheight.toFloat())
         val corners: FloatArray
         if(this.radiusall > 0)
@@ -85,10 +106,14 @@ class LinearProgressBar : View {
         canvas!!.drawPath(pathbacground,this.backgroundPaint)
         this.toPaint.style = Paint.Style.FILL
         this.toPaint.color = this.backgroundto
-        var widthtoprogress = this.toprogress.toFloat()
-        if(widthtoprogress > layoutwidth)
+        var widthtoprogress = 0f
+        if(this.Status_To_Percent)
         {
-            widthtoprogress = layoutwidth.toFloat()
+            widthtoprogress = (this.layoutwidth * this.toprogresspercent) / 100
+        }
+        else
+        {
+            widthtoprogress = if(widthtoprogress > layoutwidth) layoutwidth.toFloat() else this.toprogressint.toFloat()
         }
         val rectfto = RectF(0f,0f,widthtoprogress,this.layoutheight.toFloat())
         var topath = Path()
@@ -102,7 +127,9 @@ class LinearProgressBar : View {
         }
         textpaint.textAlign = Paint.Align.CENTER
         val positionx = (canvas.width / 2).toFloat()
-        canvas!!.drawText(this.titleprogress.toString(),positionx,((this.layoutheight / 2 + 10)).toFloat(),textpaint)
+        val positiony = ((this.layoutheight / 2 + 10)).toFloat()
+        var temptextshow = this.titleprogress.toString()
+        canvas!!.drawText(temptextshow,positionx,positiony,textpaint)
     }
 
     fun getColorTitle(): Int
@@ -120,9 +147,14 @@ class LinearProgressBar : View {
         return this.titlesize
     }
 
-    fun getToProgress(): Int
+    fun getToProgressInt(): Int
     {
-        return this.toprogress
+        return this.toprogressint
+    }
+
+    fun getToProgressPercent(): Float
+    {
+        return this.toprogresspercent
     }
 
     fun getBackgroundTo(): Int
@@ -175,6 +207,26 @@ class LinearProgressBar : View {
         return this.layoutheight
     }
 
+    fun getBoxShadowColor(): Int
+    {
+        return this.boxshadowcolor
+    }
+
+    fun getBoxShadowSize(): Int
+    {
+        return this.boxshadowsize
+    }
+
+    fun getBoxShadowSizeX(): Int
+    {
+        return this.boxshadowsizex
+    }
+
+    fun getBoxShadowSizeY(): Int
+    {
+        return this.boxshadowsizey
+    }
+
     fun setColorTitle(value: Int)
     {
         this.colortitle = value
@@ -223,9 +275,41 @@ class LinearProgressBar : View {
         refresh()
     }
 
-    fun setToProgress(value: Int)
+    fun setToProgressInt(value: Int)
     {
-        this.toprogress = value
+        this.toprogressint = value
+        this.Status_To_Percent = false
+        refresh()
+    }
+
+    fun setToProgressPercent(value: Float)
+    {
+        this.toprogresspercent = value
+        this.Status_To_Percent = true
+        refresh()
+    }
+
+    fun setBoxShadowColor(value: Int)
+    {
+        this.boxshadowcolor = value
+        refresh()
+    }
+
+    fun setBoxShadowSize(value: Int)
+    {
+        this.boxshadowsize = value
+        refresh()
+    }
+
+    fun setBoxShadowSizeX(value: Int)
+    {
+        this.boxshadowsizex = value
+        refresh()
+    }
+
+    fun setBoxShadowSizeY(value: Int)
+    {
+        this.boxshadowsizey = value
         refresh()
     }
 
