@@ -2,6 +2,8 @@
 
 This Class uses for Progress contains two layout , first layout is background and origin and second layout is top of first layout and progress from left to right and 0 to 100 percent and one view for show text given.
 
+![LinearProgressBar](https://user-images.githubusercontent.com/102223749/166692046-6cdee4b1-0ecc-45a1-ab66-a5db709a73a2.png)
+
 # How Setup
 
 added this to root build.gradle ( build.gradle contains classpath or root build.gradle )
