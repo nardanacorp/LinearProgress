@@ -5,5 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Linear Progress Bar ( Percent Progress )"
+                        android:textColor="@color/black"
+                        android:textSize="30dp" />
+
+                    <ir.nardana.linearprogressbar.LinearProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/normal"
+                        app:RadiusAll="30"
+                        app:BoxShadowColor="@color/teal_700"
+                        app:BoxShadowSize="20"
+                        android:layout_margin="10dp"
+                        app:ProgressToBackground="@color/cardview_shadow_start_color"
+                        app:TitleProgress="Downloading Video ... ( 10 Percent Progress )"
+                        app:ToProgressPercent="10" />
+
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/normal2"
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:textSize="30dp"
+                        android:textColor="@color/black"
+                        android:text="Linear Progress Bar ( Integer Progress )"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:layout_below="@+id/normal2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <ir.nardana.linearprogressbar.LinearProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            app:RadiusAll="30"
+                            app:BoxShadowColor="@color/teal_700"
+                            app:BoxShadowSize="20"
+                            app:ProgressToBackground="@color/cardview_shadow_start_color"
+                            app:TitleProgress="Downloading Video ... ( 200 Integer Progress )"
+                            app:ToProgressInt="200" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
