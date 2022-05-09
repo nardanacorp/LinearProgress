@@ -1,17 +1,21 @@
 package ir.nardana.linearprogressbar
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.animation.LinearInterpolator
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import java.util.logging.Handler
 
-class LinearProgressBar : View {
+class LinearProgressBar : View , ValueAnimator.AnimatorUpdateListener{
     var titlesize: Float = 18f
     var backgroundcolor: Int = -1
     var colortitle: Int = -1
@@ -35,6 +39,8 @@ class LinearProgressBar : View {
     var toPaint = Paint()
     var textpaint = Paint()
     var Status_To_Percent: Boolean = false
+    var animetoprogress = 0f
+    var valueanime: ValueAnimator? = null
 
     constructor(context: Context?) : super(context)
 
@@ -50,7 +56,7 @@ class LinearProgressBar : View {
         initial(context,attrs)
     }
 
-    fun initial(context: Context?, attrs: AttributeSet?)
+    private fun initial(context: Context?, attrs: AttributeSet?)
     {
         val ta = context!!.theme.obtainStyledAttributes(attrs,R.styleable.LinearProgressBar,0,0)
         try
@@ -106,16 +112,7 @@ class LinearProgressBar : View {
         canvas!!.drawPath(pathbacground,this.backgroundPaint)
         this.toPaint.style = Paint.Style.FILL
         this.toPaint.color = this.backgroundto
-        var widthtoprogress = 0f
-        if(this.Status_To_Percent)
-        {
-            widthtoprogress = (this.layoutwidth * this.toprogresspercent) / 100
-        }
-        else
-        {
-            widthtoprogress = if(widthtoprogress > layoutwidth) layoutwidth.toFloat() else this.toprogressint.toFloat()
-        }
-        val rectfto = RectF(0f,0f,widthtoprogress,this.layoutheight.toFloat())
+        val rectfto = RectF(0f,0f,animetoprogress,this.layoutheight.toFloat())
         var topath = Path()
         topath.addRoundRect(rectfto,corners, Path.Direction.CW)
         canvas!!.drawPath(topath,this.toPaint)
@@ -130,6 +127,30 @@ class LinearProgressBar : View {
         val positiony = ((this.layoutheight / 2 + 10)).toFloat()
         var temptextshow = this.titleprogress.toString()
         canvas!!.drawText(temptextshow,positionx,positiony,textpaint)
+    }
+
+    private fun createanime(toprogress: Float)
+    {
+        var newtoprogress = 0f
+        if(this.Status_To_Percent)
+        {
+            newtoprogress = (this.layoutwidth * toprogress) / 100
+        }
+        else
+        {
+            newtoprogress = if(toprogress > this.layoutwidth) this.layoutwidth.toFloat() else toprogress.toFloat()
+        }
+        valueanime = ValueAnimator.ofInt(animetoprogress.toInt(),newtoprogress.toInt())
+        valueanime!!.addUpdateListener(this)
+        valueanime!!.setInterpolator(LinearInterpolator())
+        valueanime!!.setDuration(2000)
+        valueanime!!.start()
+    }
+
+    override fun onAnimationUpdate(p0: ValueAnimator?) {
+        val valueincrease = p0!!.animatedValue.toString().toFloat()
+        animetoprogress = if(this.layoutwidth < valueincrease) this.layoutwidth.toFloat() else valueincrease
+        this.refresh()
     }
 
     fun getColorTitle(): Int
@@ -279,6 +300,7 @@ class LinearProgressBar : View {
     {
         this.toprogressint = value
         this.Status_To_Percent = false
+        onevaluate(value.toFloat())
         refresh()
     }
 
@@ -286,7 +308,26 @@ class LinearProgressBar : View {
     {
         this.toprogresspercent = value
         this.Status_To_Percent = true
+        onevaluate(value)
         refresh()
+    }
+
+    fun onevaluate(value: Float)
+    {
+        if(this.layoutwidth == -1)
+        {
+            this.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener{
+                override fun onGlobalLayout() {
+                    viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    layoutwidth = width
+                    createanime(value)
+                }
+            })
+        }
+        else
+        {
+            this.createanime(value)
+        }
     }
 
     fun setBoxShadowColor(value: Int)
