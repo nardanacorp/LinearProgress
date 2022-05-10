@@ -85,6 +85,7 @@ class LinearProgressBar : View , ValueAnimator.AnimatorUpdateListener{
             ta.recycle()
         }
         this.Status_To_Percent = this.toprogresspercent > -1f
+        if(this.Status_To_Percent) onevaluate(this.toprogresspercent) else onevaluate(this.toprogressint.toFloat())
     }
 
     override fun onDraw(canvas: Canvas?) {
